@@ -23,13 +23,13 @@ public class Database {
     }
 
     public void createTableFilm(String film) throws ClassNotFoundException, SQLException {
-        String sql = "CREATE TABLE IF NOT EXISTS film (id INT PRIMARY KEY, name VARCHAR(30), director VARCHAR(30), code int, rating int);";
+        String sql = "CREATE TABLE IF NOT EXISTS film (name VARCHAR(30), director VARCHAR(30), code int, rating int);";
         PreparedStatement statement = getDbConnection().prepareStatement(sql);
         statement.executeUpdate();
     }
 
-    public void addFilm(String film, int id, String name, String director, int code, int rating) throws ClassNotFoundException, SQLException {
-      String sql = "INSERT INTO film VALUES (" + id  + ", " + name + ", " + director + ", " + code + ", " + rating + ");";
+    public void addFilm(String name, String director, int code, int rating) throws ClassNotFoundException, SQLException {
+      String sql = "INSERT INTO film VALUES (" + name + ", " + director + ", " + code + ", " + rating + ");";
            PreparedStatement statement = getDbConnection().prepareStatement(sql);
            statement.executeUpdate();
     }
@@ -40,8 +40,8 @@ public class Database {
         statement.executeUpdate();
     }
 
-    public void updateFilm(int update_code, String column, String value) throws ClassNotFoundException, SQLException {
-        String sql = "UPDATE film SET " + column + " = '" + value + "' WHERE code='" + update_code + "';";
+    public void updateFilm(int updateCode, String column, String value) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE film SET " + column + " = '" + value + "' WHERE code='" + updateCode + "';";
         PreparedStatement statement = getDbConnection().prepareStatement(sql);
         statement.executeUpdate();
     }

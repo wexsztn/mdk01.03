@@ -5,12 +5,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Database db = new Database();
-        Scanner sc = new Scanner(System.in);
         db.isConnection();
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Добро пожаловать!!");
+        System.out.println("Добро пожаловать, дружище!!");
         while (true) {
-            System.out.println("Введите цифру, которая вам нужна: ");
+            System.out.println("___________________________________");
+            System.out.printf("Введите цифру, которая вам нужна: ");
             System.out.println("1. добавить фильм в список");
             System.out.println("2. удалить фильм из списка");
             System.out.println("3. поиск фильма");
@@ -22,14 +23,14 @@ public class Main {
             if (menu == 1) {
                 Scanner sc1 = new Scanner(System.in);
                 System.out.println("__________________________");
-                System.out.printf("введите название фильма: ");
+                System.out.println("введите название фильма: ");
                 String name = sc1.nextLine();
-                System.out.printf("введите директора: ");
+                System.out.println("введите директора: ");
                 String director = sc1.nextLine();
-                System.out.printf("введите код: ");
-                int code = sc1.nextInt();
-                System.out.printf("введите рейтинг: ");
-                int rating = sc1.nextInt();
+                System.out.println("введите код: ");
+                String code = sc1.nextLine();
+                System.out.println("введите рейтинг: ");
+                String rating = sc1.nextLine();
                 db.addFilm(name, director, code, rating);
                 System.out.println("фильм добавлен успешно!");
 
@@ -39,21 +40,18 @@ public class Main {
                 System.out.printf("введите код фильма, который хотите удалить: ");
                 int removeCode = sc2.nextInt();
                 db.deleteFilm(removeCode);
-                System.out.println("фильм удален!");
+                System.out.println("фильм был удален *грустный смайлик*");
             } else if (menu == 3) {
-                System.out.println("выберите критерий поиска:");
+                System.out.printf("выберите критерий поиска:");
                 System.out.println("1. название");
-                System.out.println("2. директор");
-                System.out.println("3. код");
+                System.out.println("2. код");
 
-                int search_option = sc.nextInt();
+                int searchOption = sc.nextInt();
                 String column = "";
 
-                if (search_option == 1) {
+                if (searchOption == 1) {
                     column = "name";
-                } else if (search_option == 2) {
-                    column = "director";
-                } else if (search_option == 3) {
+                } else if (searchOption == 2) {
                     column = "code";
                 }
 
@@ -74,27 +72,27 @@ public class Main {
                 Scanner sc3 = new Scanner(System.in);
                 String column = "none";
 
-                int search_option = sc3.nextInt();
+                int searchOption = sc3.nextInt();
 
-                if (search_option == 1) {
+                if (searchOption == 1) {
                     column = "name";
-                } else if (search_option == 2) {
+                } else if (searchOption == 2) {
                     column = "director";
-                } else if (search_option == 3) {
+                } else if (searchOption == 3) {
                     column = "code";
-                } else if (search_option == 4) {
+                } else if (searchOption == 4) {
                     column = "rating";
                 }
 
-                System.out.printf("введите код фильма, который хотите обновить: ");
+                System.out.println("введите код фильма, который хотите обновить: ");
                 Scanner sc4 = new Scanner(System.in);
                 String value = sc4.nextLine();
                 db.updateFilm(updateСode, column, value);
                 System.out.println("фильм удален успешно!");
 
-            } else if (menu== 5) {
+            } else if (menu == 5) {
                 db.selectAllFilm();
-            } else if (menu== 6) {
+            } else if (menu == 6) {
                 break;
             } else {
                 System.out.printf("неправильная команда!");

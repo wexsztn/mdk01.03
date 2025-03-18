@@ -19,17 +19,12 @@ public class Database {
 
     public void isConnection() throws SQLException, ClassNotFoundException {
         dbCon = getDbConnection();
-        System.out.println(dbCon.isValid(1000));
+        System.out.println("база данных подключена");
     }
 
-    public void createTableFilm(String film) throws ClassNotFoundException, SQLException {
-        String sql = "CREATE TABLE IF NOT EXISTS film (name VARCHAR(30), director VARCHAR(30), code int, rating int);";
-        PreparedStatement statement = getDbConnection().prepareStatement(sql);
-        statement.executeUpdate();
-    }
 
-    public void addFilm(String name, String director, int code, int rating) throws ClassNotFoundException, SQLException {
-      String sql = "INSERT INTO film VALUES (" + name + ", " + director + ", " + code + ", " + rating + ");";
+    public void addFilm(String name, String director, String code, String rating) throws ClassNotFoundException, SQLException {
+      String sql = "INSERT INTO film VALUES ('" + name + "', '" + director + "', " + code + ", " + rating + ");";
            PreparedStatement statement = getDbConnection().prepareStatement(sql);
            statement.executeUpdate();
     }
@@ -54,7 +49,7 @@ public class Database {
             String line2 = resultSet.getString(2);
             String line3 = resultSet.getString(3);
             String line4 = resultSet.getString(4);
-            System.out.println(line1 + " " + line2 + " " + line3 + " " + line4);
+            System.out.println(line1 + " , " + line2 + " , " + line3 + " , " + line4);
         }
     }
 
@@ -66,7 +61,7 @@ public class Database {
             String line2 = resultSet.getString(2);
             String line3 = resultSet.getString(3);
             String line4 = resultSet.getString(4);
-            System.out.println(line1 + " " + line2 + " " + line3 + " " + line4);
+            System.out.println(line1 + " , " + line2 + " , " + line3 + " , " + line4);
         }
     }
 
